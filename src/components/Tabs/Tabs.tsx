@@ -1,15 +1,18 @@
 import * as React from "react";
-import { TTabsProps } from "types/common";
+import { TTabsData } from "types/common";
 import { ReactFCC } from "types/react";
 
-export const Tabs: ReactFCC<Pick<TTabsProps, "onChange">> = ({
-  onChange,
-  children
-}) => {
+type TTabsProps = {
+  items: TTabsData;
+};
+
+export const Tabs: ReactFCC<TTabsProps> = ({ items }) => {
+  const [activeTab, setActiveTab] = React.useState(items[0].label);
+  const handleChangeTab = (tab: string) => setActiveTab(tab);
+  console.log(items.map((item) => item));
   return (
     <div>
       <div>TABS</div>
-      {children}
     </div>
   );
 };

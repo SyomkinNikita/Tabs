@@ -1,20 +1,6 @@
-import React from "react";
+import { TTabsData } from "types/common";
 
-type TTabsData = {
-  label: string;
-  key: string;
-  children: string | number | React.ReactNode;
-};
-
-export const TABS_MOCKS: TTabsData[] = [
-  {
-    label: "cat",
-    key: "item-1",
-    children: "Tab first",
-  },
-  {
-    label: "dog",
-    key: "item-2",
-    children: "Tab second",
-  },
+export const TABS_MOCKS: TTabsData = [
+  { label: "Tab 1", key: "item-1", children: "Content 1" },
+  { label: "Tab 2", key: "item-2", children: "Content 2" },
 ];

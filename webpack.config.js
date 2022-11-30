@@ -11,11 +11,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 const env = dotenv.config().parsed;
 
-// reduce it to a nice object, the same as before
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
+
 
 module.exports = {
   entry: path.resolve(srcPath, "index.tsx"),
@@ -34,7 +30,6 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
     }),
-    new webpack.DefinePlugin(envKeys),
   ].filter(Boolean),
   module: {
     rules: [
