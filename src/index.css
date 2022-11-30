@@ -1,0 +1,24 @@
+:root {
+  --color-background: #121212;
+  --color-white-100: #FFFFFF;
+  --color-white-094: rgba(255, 255, 255, 0.94);
+  --color-white-082: rgba(255, 255, 255, 0.82);
+  --color-gray: #BABABA;
+  --color-black: #000000;
+  --color-black-082: rgba(0, 0, 0, 0.82);
+  --transition-linear: linear 0.2s;
+  --color-blue: #0057B7;
+  --color-yellow: #FFD700;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-gray);
+}

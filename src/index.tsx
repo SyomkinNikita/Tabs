@@ -11,3 +11,7 @@ root.render(
     <App />
   </StrictMode>
 );
+
+if (module.hot) {
+  module.hot.accept();
+}
