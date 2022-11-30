@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "baseUrl": "src",
+    "paths": {
+      "components": ["components"],
+      "constants": ["constants"],
+      "localTypes": ["types"]
+    },
+    "noEmit": true,
+    "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
     "module": "es6",
+    "target": "es6",
     "moduleResolution": "node",
-    "target": "es5",
-    "allowJs": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["./src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

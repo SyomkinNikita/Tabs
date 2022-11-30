@@ -1,12 +1,13 @@
-import { hot } from "react-hot-loader/root";
 import * as React from "react";
+import { Tabs } from "components";
+import { TABS_MOCKS } from "constants/common";
 
 const App: React.FC = () => {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <main>
+      <Tabs items={TABS_MOCKS} />
+    </main>
   );
 };
 
-export default hot(App);
+export default App;

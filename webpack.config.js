@@ -1,69 +1,68 @@
-const webpack = require('webpack');
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const buildPath = path.resolve(__dirname, "dist");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const srcPath = path.resolve(__dirname, "src");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const TsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
+const webpack = require("webpack");
+const dotenv = require("dotenv");
 
-const config = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.tsx'
-  ],
+const isProd = process.env.NODE_ENV === "production";
+
+const env = dotenv.config().parsed;
+
+
+
+module.exports = {
+  entry: path.resolve(srcPath, "index.tsx"),
+  target: !isProd ? "web" : "browserlist",
+  devtool: isProd ? "hidden-source-map" : "eval-source-map",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: buildPath,
+    filename: "bundle.js",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, "index.html"),
+    }),
+    !isProd && new ReactRefreshWebpackPlugin(),
+    new TsCheckerPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
+  ].filter(Boolean),
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.css/,
+        use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.ts(x)?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/
+        test: /\.[tj]sx?/,
+        use: "babel-loader",
       },
       {
-        test: /\.svg$/,
-        use: 'file-loader'
+        test: /\.(png|svg|jpeg)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
       },
-      {
-        test: /\.png$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/png'
-            }
-          }
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new CopyPlugin({
-      patterns: [{ from: 'src/index.html' }],
-    }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin()
-  ],
-  resolve: {
-    extensions: [
-      '.tsx',
-      '.ts',
-      '.js'
     ],
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
+      components: path.join(srcPath, "components"),
+      constants: path.join(srcPath, "constants"),
+      localTypes: path.join(srcPath, "types")
+    },
   },
   devServer: {
-    'static': {
-      directory: './dist'
-    }
-  }
+    compress: true,
+    port: 9000,
+    hot: true,
+  },
 };
-
-module.exports = config;
