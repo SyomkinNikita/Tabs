@@ -5,6 +5,7 @@ dist/*
 node_modules/
 package-lock.json
 *.log
+/dist
 
 # OS generated files
 .DS_Store
