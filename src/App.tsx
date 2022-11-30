@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Tab, Tabs } from "components";
+import { Tabs } from "components";
 import { TABS_MOCKS } from "constants/common";
 
 const App: React.FC = () => {

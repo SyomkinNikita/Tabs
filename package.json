@@ -1,23 +1,24 @@
 {
-  "name": "github_react",
+  "name": "tabs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development npx webpack serve --mode=development",
     "build": "NODE_ENV=production npx webpack -mode=production",
-    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json"
+    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SyomkinNikita/github_react.git"
+    "url": "git+https://github.com/SyomkinNikita/tabs.git"
   },
   "author": "SyomkinNikita",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SyomkinNikita/github_react/issues"
+    "url": "https://github.com/SyomkinNikita/tabs/issues"
   },
-  "homepage": "https://github.com/SyomkinNikita/github_react#readme",
+  "homepage": "https://github.com/SyomkinNikita/tabs#readme",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
@@ -29,12 +30,14 @@
     "@types/react-dom": "^18.0.9",
     "@types/styled-components": "^5.1.26",
     "@types/webpack-env": "^1.18.0",
+    "babel-jest": "^29.3.1",
     "babel-loader": "^9.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "css-loader": "^6.7.2",
     "dotenv": "^16.0.3",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.3.1",
     "react-refresh": "^0.14.0",
     "react-router-dom": "^6.4.3",
     "style-loader": "^3.3.1",
